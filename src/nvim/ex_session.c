@@ -901,6 +901,9 @@ void ex_mkrc(exarg_T *eap)
                    " | set so=0 siso=0") == FAIL) {
         failed = true;
       }
+      if (no_hlsearch && put_line(fd, "nohlsearch") == FAIL) {
+        failed = true;
+      }
       if (eap->cmdidx == CMD_mksession) {
         char_u *dirnow;  // current directory
 

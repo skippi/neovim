@@ -470,4 +470,17 @@ func Test_mkvimrc()
   call delete('Xtestvimrc')
 endfunc
 
+func Test_mksession_hlsearch()
+  set hlsearch
+  mksession! Xtest_mks.out
+  nohlsearch
+  source Xtest_mks.out
+  call assert_equal(1, v:hlsearch, 'session should restore search highlighting state')
+  nohlsearch
+  mksession! Xtest_mks.out
+  source Xtest_mks.out
+  call assert_equal(0, v:hlsearch, 'session should restore search highlighting state')
+  call delete('Xtest_mks.out')
+endfunc
+
 " vim: shiftwidth=2 sts=2 expandtab
